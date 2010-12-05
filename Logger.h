@@ -13,8 +13,6 @@
 
 #include "Interfaces.h"
 
-using namespace std;
-
 /*
 class ILogger {
 public:
@@ -26,25 +24,25 @@ public:
 };
 */
 DeclareInterface(ILogger)
-	virtual void log(string s);
-	virtual void logln(string s);
+	virtual void log(std::string s);
+	virtual void logln(std::string s);
 EndInterface
 
 class SimpleConsoleLogger : implements ILogger {
-	virtual void log(string s);
-	virtual void logln(string s);
+	virtual void log(std::string s);
+	virtual void logln(std::string s);
 };
 
 class SimpleFileLogger : implements ILogger {
 private:
-	string outfile;
-	ofstream myfile;
+	std::string outfile;
+	std::ofstream myfile;
 public:
-	SimpleFileLogger(string out_file);
+	SimpleFileLogger(std::string out_file);
 
 	virtual ~SimpleFileLogger();
-	virtual void log(string s);
-	virtual void logln(string s);
+	virtual void log(std::string s);
+	virtual void logln(std::string s);
 
 /*	virtual void logln(string s) {
 		log(s);

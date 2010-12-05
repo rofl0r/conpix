@@ -10,6 +10,8 @@
 
 #include "Logger.h"
 
+using namespace std;
+
 void ILogger::log(string s) {
 }
 

@@ -9,6 +9,7 @@
 #include "ConsoleWindow.h"
 #include "Format.h"
 
+using std::string;
 
 ConsoleWindow::ConsoleWindow(ILogger* _logger) {
 	logger = _logger;
