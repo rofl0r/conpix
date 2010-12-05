@@ -1,0 +1,19 @@
+c0npix by rofl0r
+===============
+
+display your images in a 256 color xterm!
+
+export TERM=xterm-256color before usage
+
+needs the following libraries
+ncurses
+lepton
+tiff
+png
+
+
+LICENSE: GNU GPL v2
+
+made with eclipse CDT (managed build)
+
+the flickering at the end is caused by restoring the original colors, so you can keep on working with your xterm.

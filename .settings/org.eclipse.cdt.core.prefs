@@ -1,0 +1,7 @@
+#Sat Dec 04 21:49:00 CET 2010
+eclipse.preferences.version=1
+environment/project/cdt.managedbuild.config.gnu.exe.release.1570200338/CXXFLAGS/delimiter=\:
+environment/project/cdt.managedbuild.config.gnu.exe.release.1570200338/CXXFLAGS/operation=append
+environment/project/cdt.managedbuild.config.gnu.exe.release.1570200338/CXXFLAGS/value=-I/usr/include/ncurses
+environment/project/cdt.managedbuild.config.gnu.exe.release.1570200338/append=true
+environment/project/cdt.managedbuild.config.gnu.exe.release.1570200338/appendContributed=true
