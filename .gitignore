@@ -1,6 +1,8 @@
 *.o
 testt/conpix
 testt/a.out
+a.out
 testt/log.txt
+log.txt
 
 
