@@ -9,19 +9,16 @@
 #define CONSOLEWINDOW_H_
 
 #include <stdint.h>
-#include <ncurses.h>
-
 
 #include "Rgb.h"
 #include "Logger.h"
-
-
+#include "NsNcurses.h"
 
 const int colorpaircount = 256;
 
 class ConsoleWindow {
 private:
-	NCURSES_ATTR_T lastattr;
+	ncurses::attr_t lastattr;
 	int32_t colors[colorpaircount];
 	int32_t* fgcolors[colorpaircount];
 	int32_t* bgcolors[colorpaircount];
@@ -52,11 +49,12 @@ public:
 	bool useColorPair(int pair);
 	void getSize(int& x, int& y);
 	void gotoxy(int x, int y);
-	void addchar(int c, uint attributes);
+	void addchar(int c, unsigned int attributes);
 	void printfxy (int x, int y, char* text);
 	char getKey();
 	void sleep(int ms);
-	void reFresh();
+	void refresh();
+	void clear();
 	int fromThousand(int in);
 	int toThousand(int in);
 };

@@ -15,13 +15,13 @@ ConsoleWindow::ConsoleWindow(ILogger* _logger) {
 	logger = _logger;
 	lastattr = 0;
 	inittables();
-	initscr();
-    noecho();
-	cbreak();
-	keypad(stdscr, TRUE);
-	hasColors = has_colors();
-	canChangeColors = hasColors ? can_change_color() : false;
-	if (hasColors) start_color();
+	ncurses::initscr();
+	ncurses::noecho();
+    ncurses::cbreak();
+	ncurses::keypad(ncurses::stdscr, TRUE);
+	hasColors = ncurses::has_colors();
+	canChangeColors = hasColors ? ncurses::can_change_color() : false;
+	if (hasColors) ncurses::start_color();
 	if (canChangeColors) saveColors();
 	maxcol = 0;
 	log(format("hascolors: %d" , hasColors));
@@ -30,19 +30,21 @@ ConsoleWindow::ConsoleWindow(ILogger* _logger) {
 }
 
 ConsoleWindow::~ConsoleWindow() {
+	clear();
+	refresh();
 	if (canChangeColors) restoreColors();
-	endwin();
+	ncurses::endwin();
 }
 
 void ConsoleWindow::saveColors() {
 	for (short int i = 0; i < colorpaircount; i++) {
 		short int r,g,b;
-		color_content(i, &r, &g, &b);
+		ncurses::color_content(i, &r, &g, &b);
 		org_colors[i] = rgb(fromThousand(r), fromThousand(g), fromThousand(b));
 	}
 	for (short int i = 1; i < colorpaircount; i++) {
 		short int f, b;
-		pair_content(i, &f, &b);
+		ncurses::pair_content(i, &f, &b);
 		assert(f < colorpaircount && b < colorpaircount);
 		org_fgcolors[i] = f;
 		org_bgcolors[i] = b;
@@ -54,7 +56,7 @@ void ConsoleWindow::restoreColors() {
 		setCursesColor((int)i-1, org_colors[i]);
 	}
 	for (short int i = 1; i < colorpaircount; i++) {
-		init_pair(i, org_fgcolors[i], org_fgcolors[i]);
+		ncurses::init_pair(i, org_fgcolors[i], org_fgcolors[i]);
 	}
 }
 
@@ -137,7 +139,7 @@ bool ConsoleWindow::setCursesColor(int colornumber, RGB color) {
 	int nr = toThousand(color.r);
 	int ng = toThousand(color.g);
 	int nb = toThousand(color.b);
-	return init_color(colornumber+1, nr, ng, nb) != FALSE;
+	return ncurses::init_color(colornumber+1, nr, ng, nb) != FALSE;
 }
 
 bool ConsoleWindow::setColorPair(int pair, int fgcol, int bgcol) {
@@ -146,48 +148,53 @@ bool ConsoleWindow::setColorPair(int pair, int fgcol, int bgcol) {
 	if (!hasColors) return false;
 	fgcolors[pair] = &colors[fgcol];
 	bgcolors[pair] = &colors[bgcol];
-	return init_pair(pair+1, fgcol+1, bgcol+1) != FALSE;
+	return ncurses::init_pair(pair+1, fgcol+1, bgcol+1) != FALSE;
 }
 
 bool ConsoleWindow::useColorPair(int pair) {
 	log(format("useColorPair %d", pair));
 	assert(pair < colorpaircount);
 	if (!hasColors) return false;
-	if (lastattr) attroff(lastattr);
+	if (lastattr) ncurses::wattr_off(ncurses::stdscr,lastattr,NULL);
 	lastattr = COLOR_PAIR(pair+1);
-	attron(lastattr);
+	ncurses::wattr_on(ncurses::stdscr, lastattr, NULL);
 	return true;
 }
 
 void ConsoleWindow::getSize(int& x, int& y){
-	x = getmaxx(stdscr);
-	y = getmaxy(stdscr);
+	if(ncurses::stdscr) {
+		x = ncurses::stdscr->_maxx;
+		y = ncurses::stdscr->_maxy;
+	} else { y = -1; x = -1; }
 }
 
 void ConsoleWindow::gotoxy(int x, int y) {
-	move(y, x);
+	ncurses::move(y, x);
 }
 
-void ConsoleWindow::addchar(int c, uint attributes) {
+void ConsoleWindow::addchar(int c, unsigned int attributes) {
 	initoutput();
-	addch(c | attributes);
+	ncurses::waddch(ncurses::stdscr, c | attributes);
 }
 
 
 void ConsoleWindow::printfxy (int x, int y, char* text) {
 	initoutput();
-	mvprintw(x, y, "%s", text, 0);
+	ncurses::mvprintw(x, y, "%s", text, 0);
 }
 
 char ConsoleWindow::getKey() {
-	return getch();
+	return ncurses::wgetch(ncurses::stdscr);
 }
 
 void ConsoleWindow::sleep(int ms) {
-	napms(ms);
+	ncurses::napms(ms);
 }
 
-void ConsoleWindow::reFresh() {
-	refresh();
+void ConsoleWindow::refresh() {
+	ncurses::refresh();
 }
 
+void ConsoleWindow::clear() {
+	ncurses::clear();
+}

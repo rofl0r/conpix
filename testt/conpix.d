@@ -1,6 +1,6 @@
 conpix.d conpix.o: ../conpix.cpp ../Logger.h ../Interfaces.h ../Format.h \
- ../ConsoleWindow.h /usr/include/ncurses/ncurses.h ../Rgb.h \
- ../Endianness.h
+ ../ConsoleWindow.h ../Rgb.h ../Endianness.h ../NsNcurses.h \
+ /usr/include/ncurses/ncurses.h
 
 ../Logger.h:
 
@@ -10,8 +10,10 @@ conpix.d conpix.o: ../conpix.cpp ../Logger.h ../Interfaces.h ../Format.h \
 
 ../ConsoleWindow.h:
 
-/usr/include/ncurses/ncurses.h:
-
 ../Rgb.h:
 
 ../Endianness.h:
+
+../NsNcurses.h:
+
+/usr/include/ncurses/ncurses.h:

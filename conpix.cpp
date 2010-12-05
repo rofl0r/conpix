@@ -149,7 +149,7 @@ int main(int argc, char** argv) {
 	t.printfxy(18, 18, "red on green");
 	*/
 	//ti.start();
-	t->reFresh();
+	t->refresh();
 	//l.logln(format("display took %f ms", ti.stop));
 	t->getKey();
 
