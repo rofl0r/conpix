@@ -7,9 +7,11 @@ export TERM=xterm-256color before usage
 
 needs the following libraries
 ncurses
-lepton (sometimes called liblept)
+lepton (sometimes called liblept or even leptonica)
 tiff
 png
+
+how to get the libraries on osx: get macports and run: sudo port install leptonica tiff libpng ncurses
 
 how to compile: run ./build.sh
 

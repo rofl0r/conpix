@@ -8,10 +8,11 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include <liblept/allheaders.h>
 
 #include <iostream>
 #include <fstream>
+
+#include "Lepton.h"
 
 #include "Logger.h"
 #include "Format.h"
