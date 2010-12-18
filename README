@@ -1,25 +1,34 @@
 c0npix by rofl0r
-===============
+================
 
 display your images in a 256 color xterm!
 
 export TERM=xterm-256color before usage
 
 needs the following libraries
-ncurses
-lepton (sometimes called liblept or even leptonica)
-tiff
-png
+- ncurses
+- lepton (aka liblept aka leptonica)
+- tiff
+- png
 
-how to get the libraries on osx: get macports and run: sudo port install leptonica tiff libpng ncurses
+AUTOMATED LIB INSTALL
+---------------------
+OS X: get macports and run: sudo port install leptonica tiff libpng ncurses
 
-how to compile: run ./build.sh
+debian/ubuntu: sudo apt-get install libleptonica-dev libncurses5-dev libpng12-dev libtiff4-dev
 
-(the Makefile is auto-maintained by eclipse and somehow misconfigured 
-atm)
+COMPILATION
+-----------
+run ./build.sh
 
-LICENSE: GNU GPL v3
+(the Makefile is auto-maintained by eclipse and somehow misconfigured atm)
 
+LICENSE
+-------
+GNU GPL v3
+
+MISC
+----
 made with eclipse CDT (managed build)
 
 the flickering at the end is caused by restoring the original colors, so you can keep on working with your xterm.
