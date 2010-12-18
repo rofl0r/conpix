@@ -8,10 +8,11 @@
 #ifndef LEPTON_H_
 #define LEPTON_H_
 
-#ifndef __linux
+//#ifndef __linux
 #include <leptonica/allheaders.h>
-#else
-#include <liblept/allheaders.h>
-#endif
+// liblept changed directory structure between 1.62 and 1.67
+//#else
+//#include <liblept/allheaders.h>
+//#endif
 
 #endif /* LEPTON_H_ */
