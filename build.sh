@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
-INCLUDES="-I/opt/local/include/ -I/usr/include/ncurses"
-LIBDIRS="-L/opt/local/lib"
+INCLUDES="-I/opt/local/include/ -I/usr/local/include -I/usr/include/ncurses"
+LIBDIRS="-L/opt/local/lib -L/usr/local/lib"
 cd testt
 g++ $INCLUDES -O3 -Wall -c -fmessage-length=0 -MMD -MP -MF"Rgb.d" -MT"Rgb.d" -o"Rgb.o" "../Rgb.c"
 g++ $INCLUDES -O3 -Wall -c -fmessage-length=0 -MMD -MP -MF"Format.d" -MT"Format.d" -o"Format.o" "../Format.cpp"
