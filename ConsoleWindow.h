@@ -18,7 +18,7 @@ const int colorpaircount = 256;
 
 class ConsoleWindow {
 private:
-	ncurses::attr_t lastattr;
+	int lastattr;
 	int32_t colors[colorpaircount];
 	int32_t* fgcolors[colorpaircount];
 	int32_t* bgcolors[colorpaircount];

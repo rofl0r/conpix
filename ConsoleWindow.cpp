@@ -17,7 +17,7 @@ ConsoleWindow::ConsoleWindow(ILogger* _logger) {
 	inittables();
 	ncurses::initscr();
 	ncurses::noecho();
-    ncurses::cbreak();
+	ncurses::cbreak();
 	ncurses::keypad(ncurses::stdscr, TRUE);
 	hasColors = ncurses::has_colors();
 	canChangeColors = hasColors ? ncurses::can_change_color() : false;
@@ -95,6 +95,7 @@ bool ConsoleWindow::setColor(RGB mycolor, bool fg) {
 		}
 	}
 	assert (false); // "could not set color");
+	return false;
 }
 
 void ConsoleWindow::initoutput() {
@@ -163,8 +164,8 @@ bool ConsoleWindow::useColorPair(int pair) {
 
 void ConsoleWindow::getSize(int& x, int& y){
 	if(ncurses::stdscr) {
-		x = ncurses::stdscr->_maxx;
-		y = ncurses::stdscr->_maxy;
+		x = ncurses::getmaxx(ncurses::stdscr);
+		y = ncurses::getmaxy(ncurses::stdscr);
 	} else { y = -1; x = -1; }
 }
 
@@ -180,7 +181,7 @@ void ConsoleWindow::addchar(int c, unsigned int attributes) {
 
 void ConsoleWindow::printfxy (int x, int y, char* text) {
 	initoutput();
-	ncurses::mvprintw(x, y, "%s", text, 0);
+	ncurses::mvprintw(x, y, "%s", text);
 }
 
 char ConsoleWindow::getKey() {
