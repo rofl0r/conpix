@@ -23,7 +23,7 @@ using namespace std;
 
 bool fexists(const char *filename) {
   ifstream ifile(filename);
-  return ifile;
+  return ifile.is_open();
 }
 
 int main(int argc, char** argv) {
