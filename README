@@ -15,7 +15,7 @@ AUTOMATED LIB INSTALL
 ---------------------
 OS X: get macports and run: sudo port install leptonica tiff libpng ncurses
 
-debian/ubuntu: sudo apt-get install libleptonica-dev libncurses5-dev libpng12-dev libtiff4-dev
+debian/ubuntu: sudo apt-get install libleptonica-dev libncurses-dev pkg-config
 
 COMPILATION
 -----------
