@@ -164,8 +164,8 @@ bool ConsoleWindow::useColorPair(int pair) {
 
 void ConsoleWindow::getSize(int& x, int& y){
 	if(ncurses::stdscr) {
-		x = ncurses::getmaxx(ncurses::stdscr);
-		y = ncurses::getmaxy(ncurses::stdscr);
+		x = (ncurses::getmaxx)(ncurses::stdscr);
+		y = (ncurses::getmaxy)(ncurses::stdscr);
 	} else { y = -1; x = -1; }
 }
 
