@@ -19,9 +19,7 @@ debian/ubuntu: sudo apt-get install libleptonica-dev libncurses5-dev libpng12-de
 
 COMPILATION
 -----------
-run ./build.sh
-
-(the Makefile is auto-maintained by eclipse and somehow misconfigured atm)
+run make
 
 LICENSE
 -------
